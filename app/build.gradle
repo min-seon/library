@@ -1,9 +1,9 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 31
     defaultConfig {
-        applicationId "com.aware"
+        //applicationId "com.aware"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
@@ -32,7 +32,28 @@ android {
             path 'jni/CMakeLists.txt'
         }
     }
+// no error
+    lintOptions {
+        abortOnError false
+    }
 }
+
+//기존library.jar파일 삭제.
+task deleteObjectJar(type:Delete){
+    delete'release/library.jar'
+}
+
+//release폴더에library이름으로jar생성.
+task exportJar(type:Copy){
+    //aar_main_jar/release 에서 classes.jar 파일을 가져온다.
+    from('build/intermediates/aar_main_jar/release/')
+    into('release/')
+    include('classes.jar')
+    rename('classes.jar','library.jar')
+}
+
+//exportJar실행시 deleteObjectJar가 실행
+exportJar.dependsOn(deleteObjectJar,build)
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -46,4 +67,5 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0-alpha09'
 }
