@@ -40,7 +40,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-//import com.aware.utils.pictureFacer;
+import com.utils.pictureFacer;
 
 public class FdActivity extends CameraActivity implements CvCameraViewListener2 {
 
@@ -66,9 +66,9 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
 
     private float                  mRelativeFaceSize   = 0.2f;
     private int                    mAbsoluteFaceSize   = 0;
-    //얼굴갯수 변수 추가 -> 전역변수로 만들기
-    public static int                     len=0;
-    //MainActivity에서 folderName,folderPath 받기 위한 것
+
+    public static int                     len=0; //face count
+    //in MainActivity
     String foldePath;
     String folderName;
 
@@ -154,26 +154,26 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
         mOpenCvCameraView.setCvCameraViewListener(this);
         mOpenCvCameraView.setCameraIndex(1);
 
-        //MainActivity에서 넘겨준 foldername, folderpath 다시넘겨주기위해 받기
+        //flodername, folderpath from MainActivity for give
 
         folderName= getIntent().getStringExtra("folderName");
         foldePath = getIntent().getStringExtra("folderPath");
 
 
-        //button 없이 opencv -> ImageDisplay 로 데이터 넘겨주고 activity 전환하기
+        //no button with opencv -> ImageDisplay
         new Handler().postDelayed(new Runnable(){
             public void run(){
                 //start activity here
 //                System.out.println("----------------give face count : "+len);
 
-                /* toyapp
+
                     Intent intent = new Intent(FdActivity.this, ImageDisplay.class);
                     intent.putExtra("len",len);
                     intent.putExtra("folderPath",foldePath);
                     intent.putExtra("folderName", folderName);
                     startActivity(intent);
                     finish();
-*/
+
 
             }
         }, 1000);
@@ -258,14 +258,14 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
         for (int i = 0; i < facesArray.length; i++)
             Imgproc.rectangle(mRgba, facesArray[i].tl(), facesArray[i].br(), FACE_RECT_COLOR, 3);
 
-        //face 값 전역변수로 만들기
+        //face count
         this.len=facesArray.length;
 
        return mRgba;
 
     }
 
-    //pictureFacer로 얼굴 갯수값 보내기
+    //Face count to pictureFacer
     public int getLen(){
         return len;
     }

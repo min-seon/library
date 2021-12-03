@@ -66,7 +66,7 @@ struct DetectorAgregator
 };
 
 extern "C" JNIEXPORT jlong JNICALL Java_com_androidcodeman_simpleimagegallery_DetectionBasedTracker_nativeCreateObject
-(JNIEnv * jenv, jclass, jstring jFileName, jint faceSize)
+        (JNIEnv * jenv, jclass, jstring jFileName, jint faceSize)
 {
     LOGD("Java_com_androidcodeman_simpleimagegallery_DetectionBasedTracker_nativeCreateObject enter");
     const char* jnamestr = jenv->GetStringUTFChars(jFileName, NULL);
@@ -78,9 +78,9 @@ extern "C" JNIEXPORT jlong JNICALL Java_com_androidcodeman_simpleimagegallery_De
     try
     {
         cv::Ptr<CascadeDetectorAdapter> mainDetector = makePtr<CascadeDetectorAdapter>(
-            makePtr<CascadeClassifier>(stdFileName));
+                makePtr<CascadeClassifier>(stdFileName));
         cv::Ptr<CascadeDetectorAdapter> trackingDetector = makePtr<CascadeDetectorAdapter>(
-            makePtr<CascadeClassifier>(stdFileName));
+                makePtr<CascadeClassifier>(stdFileName));
         result = (jlong)new DetectorAgregator(mainDetector, trackingDetector);
         if (faceSize > 0)
         {
@@ -109,7 +109,7 @@ extern "C" JNIEXPORT jlong JNICALL Java_com_androidcodeman_simpleimagegallery_De
 }
 
 extern "C" JNIEXPORT void JNICALL Java_com_androidcodeman_simpleimagegallery_DetectionBasedTracker_nativeDestroyObject
-(JNIEnv * jenv, jclass, jlong thiz)
+        (JNIEnv * jenv, jclass, jlong thiz)
 {
     LOGD("Java_com_androidcodeman_simpleimagegallery_DetectionBasedTracker_nativeDestroyObject");
 
@@ -139,7 +139,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_androidcodeman_simpleimagegallery_Det
 }
 
 extern "C" JNIEXPORT void JNICALL Java_com_androidcodeman_simpleimagegallery_DetectionBasedTracker_nativeStart
-(JNIEnv * jenv, jclass, jlong thiz)
+        (JNIEnv * jenv, jclass, jlong thiz)
 {
     LOGD("Java_com_androidcodeman_simpleimagegallery_DetectionBasedTracker_nativeStart");
 
@@ -165,7 +165,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_androidcodeman_simpleimagegallery_Det
 }
 
 extern "C" JNIEXPORT void JNICALL Java_com_androidcodeman_simpleimagegallery_DetectionBasedTracker_nativeStop
-(JNIEnv * jenv, jclass, jlong thiz)
+        (JNIEnv * jenv, jclass, jlong thiz)
 {
     LOGD("Java_com_androidcodeman_simpleimagegallery_DetectionBasedTracker_nativeStop");
 
@@ -191,7 +191,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_androidcodeman_simpleimagegallery_Det
 }
 
 extern "C" JNIEXPORT void JNICALL Java_com_androidcodeman_simpleimagegallery_DetectionBasedTracker_nativeSetFaceSize
-(JNIEnv * jenv, jclass, jlong thiz, jint faceSize)
+        (JNIEnv * jenv, jclass, jlong thiz, jint faceSize)
 {
     LOGD("Java_com_androidcodeman_simpleimagegallery_DetectionBasedTracker_nativeSetFaceSize -- BEGIN");
 
@@ -222,7 +222,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_androidcodeman_simpleimagegallery_Det
 
 
 extern "C" JNIEXPORT void JNICALL Java_com_androidcodeman_simpleimagegallery_DetectionBasedTracker_nativeDetect
-(JNIEnv * jenv, jclass, jlong thiz, jlong imageGray, jlong faces)
+        (JNIEnv * jenv, jclass, jlong thiz, jlong imageGray, jlong faces)
 {
     LOGD("Java_com_androidcodeman_simpleimagegallery_DetectionBasedTracker_nativeDetect");
 
@@ -248,4 +248,38 @@ extern "C" JNIEXPORT void JNICALL Java_com_androidcodeman_simpleimagegallery_Det
         jenv->ThrowNew(je, "Unknown exception in JNI code DetectionBasedTracker.nativeDetect()");
     }
     LOGD("Java_com_androidcodeman_simpleimagegallery_DetectionBasedTracker_nativeDetect END");
+}
+
+extern "C"
+JNIEXPORT jlong JNICALL
+Java_com_aware_DetectionBasedTracker_nativeCreateObject(JNIEnv *env, jclass clazz,
+                                                        jstring cascade_name, jint min_face_size) {
+    // TODO: implement nativeCreateObject()
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_aware_DetectionBasedTracker_nativeDestroyObject(JNIEnv *env, jclass clazz, jlong thiz) {
+    // TODO: implement nativeDestroyObject()
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_aware_DetectionBasedTracker_nativeStart(JNIEnv *env, jclass clazz, jlong thiz) {
+    // TODO: implement nativeStart()
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_aware_DetectionBasedTracker_nativeStop(JNIEnv *env, jclass clazz, jlong thiz) {
+    // TODO: implement nativeStop()
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_aware_DetectionBasedTracker_nativeSetFaceSize(JNIEnv *env, jclass clazz, jlong thiz,
+                                                       jint size) {
+    // TODO: implement nativeSetFaceSize()
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_aware_DetectionBasedTracker_nativeDetect(JNIEnv *env, jclass clazz, jlong thiz,
+                                                  jlong input_image, jlong faces) {
+    // TODO: implement nativeDetect()
 }
