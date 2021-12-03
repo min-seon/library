@@ -2,8 +2,6 @@ package com.utils;
 import com.aware.FdActivity;
 
 /**
- *
- *
  * Custom class for holding data of images on the device external storage
  */
 public class pictureFacer {

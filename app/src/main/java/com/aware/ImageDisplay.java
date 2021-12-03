@@ -19,6 +19,11 @@ import com.utils.pictureFacer;
 
 import java.util.ArrayList;
 
+/**
+ * This Activity get a path to a folder that contains images from the MainActivity Intent and displays
+ * all the images in the folder inside a RecyclerView
+ */
+
 public class ImageDisplay extends AppCompatActivity implements itemClickListener {
 
     TextView folderName;
@@ -82,7 +87,12 @@ public class ImageDisplay extends AppCompatActivity implements itemClickListener
         }
         return images;
     }
-
+    /**
+     *
+     * @param holder The ViewHolder for the clicked picture
+     * @param position The position in the grid of the picture that was clicked
+     * @param pics An ArrayList of all the items in the Adapter
+     */
     @Override
     public void onPicClicked(PicHolder holder, int position, ArrayList<pictureFacer> pics) {
 

@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 import com.aware.R;
 /**
- *
- *
  * picture_Adapter's ViewHolder
  */
 public class PicHolder {
