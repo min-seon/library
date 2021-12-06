@@ -42,6 +42,9 @@ import android.widget.TextView;
 
 import com.utils.pictureFacer;
 
+/**
+ *  reference exportToHTML > javadoc
+ */
 public class FdActivity extends CameraActivity implements CvCameraViewListener2 {
 
     private static final String    TAG                 = "OCVSample::Activity";

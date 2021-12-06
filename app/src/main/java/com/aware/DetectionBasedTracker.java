@@ -6,6 +6,10 @@ import org.opencv.objdetect.Objdetect;
 
 import java.util.Vector;
 
+/**
+ * OpenCV for detect face
+ * reference exportToHTML > javadoc
+ */
 public class DetectionBasedTracker
 {
     public DetectionBasedTracker(String cascadeName, int minFaceSize) {
